@@ -71,8 +71,9 @@ const userLogin = async function(req, res) {
       if(!isValidPassword(password)){return res.status(400).send({ status: false, message: "Password should be minLen 8, maxLen 15 long and must contain one of 0-9,A-Z,a-z & special char", })}
  
       let user = await userModel.findOne({ email: email })
-      let passwordCheck = await bcrypt.compare(password,user.password)
       if(!user){return res.status(404).send({ status: false, message: " user is not found !!!" })};
+      let passwordCheck = await bcrypt.compare(password,user.password)
+      if(!passwordCheck){return res.status(404).send({ status: false, message: " password is Wrong !!!" })};
       
 ///------------------------- generate jwt token--------------------//
         let token = jwt.sign({userId: user._id, iat: Date.now()}, "group21",{ expiresIn:"10h"}); 
