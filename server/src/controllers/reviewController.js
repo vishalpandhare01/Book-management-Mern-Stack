@@ -1,7 +1,6 @@
 const reviewModel= require("../models/reviewModel")
 const bookModel =  require("../models/bookModel");
 const validations=require('../validations/validation');
-//const { findById } = require("../models/reviewModel");
 
 const {isValidObjectId,isEmpty}=validations
 //========================================= create review for books =========================================//

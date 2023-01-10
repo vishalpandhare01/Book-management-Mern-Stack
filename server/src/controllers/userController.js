@@ -1,6 +1,7 @@
 const userModel = require('../models/userModel')
 const validations= require("../validations/validation")
 const jwt= require("jsonwebtoken")
+const bcrypt = require('bcrypt')
 let {isEmpty,isValidName,isValidEmail,isValidMobileNo,isValidPassword} = validations
 
 //=================================================== REGISTER USERS =========================================//
@@ -39,6 +40,8 @@ const createUsers = async (req,res)=>{
 
    if(!isValidPassword(password)){return  res.status(400).send({status: false,message:"Password should be minLen 8, maxLen 15 long and must contain one of 0-9,A-Z,a-z & special char"})}
 
+   data.password = await bcrypt.hash(password,5)
+
   let address = {}
   address.city  = data.city
   address.street  = data.street
@@ -66,13 +69,13 @@ const userLogin = async function(req, res) {
 
       if(!password) return res.status(400).send({ status: false, message: "Password Required." });
       if(!isValidPassword(password)){return res.status(400).send({ status: false, message: "Password should be minLen 8, maxLen 15 long and must contain one of 0-9,A-Z,a-z & special char", })}
-
-      let user = await userModel.findOne({ email: email, password: password }).select({ _id: 1 }); //user = 97887787
-      // console.log(user)
+ 
+      let user = await userModel.findOne({ email: email })
+      let passwordCheck = await bcrypt.compare(password,user.password)
       if(!user){return res.status(404).send({ status: false, message: " user is not found !!!" })};
       
 ///------------------------- generate jwt token--------------------//
-        let token = jwt.sign({userId: user._id, iat: Date.now()}, "group21",{ expiresIn:"10h"}); //Math.floor(Date.now()) 
+        let token = jwt.sign({userId: user._id, iat: Date.now()}, "group21",{ expiresIn:"10h"}); 
         res.setHeader("x-api-key", token);
         return res.status(200).send({ status: true, message: "Success",userId: user._id ,token: token }); 
       }
