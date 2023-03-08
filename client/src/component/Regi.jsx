@@ -1,10 +1,9 @@
 import '.././App.css';
 import { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom" 
 function Regi() {
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState("") 
     const [phone, setPhone] = useState("")
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -16,7 +15,7 @@ function Regi() {
 
     const registerUser = async function (event) {
         event.preventDefault();
-        await axios.post("http://localhost:8000/register", {
+        await axios.post("http://localhost:8000/register", {         //axios.post("url", post)
             title, phone, name, email, password, street, city, pincode
         }).then((res) => {
             alert(`${name} Your Acount Created Succesfully

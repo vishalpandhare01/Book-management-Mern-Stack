@@ -38,7 +38,7 @@ const createUsers = async (req,res)=>{
    let passwordUnique = await userModel.findOne({password:password})
    if(passwordUnique){return res.status(400).send({status:false,message:"password Should be Unique"})}
 
-   if(!isValidPassword(password)){return  res.status(400).send({status: false,message:"Password should be minLen 8, maxLen 15 long and must contain one of 0-9,A-Z,a-z & special char"})}
+  //  if(!isValidPassword(password)){return  res.status(400).send({status: false,message:"Password should be minLen 8, maxLen 15 long and must contain one of 0-9,A-Z,a-z & special char"})}
 
    data.password = await bcrypt.hash(password,5)
 

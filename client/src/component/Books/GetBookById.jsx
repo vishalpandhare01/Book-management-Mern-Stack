@@ -28,7 +28,7 @@ return(
     <div className='container'>
         <div className="shadow-none p-3 mb-5 bg-light rounded">
         <img  width='20%' src={bookCover} alt="book"/><br/>
-         <a>{title}</a>
+         <a href="/">{title}</a>
          <li>excerpt: {excerpt}</li>
          <li>ISBN: {ISBN}</li>
          <li> category: {category}</li>

@@ -26,7 +26,6 @@ const createReviews= async function(req,res){
           
         if(!rating){ return res.status(400).send({status:false,message:"rating is mandatory"})}
         if(data.rating > 5 || data.rating < 1) { return res.status(400).send({ status: false, message: 'Rating should be between 1 to 5  ', }) }
-
     
        await  reviewModel.create(data)
        let reviewsData= await reviewModel.find({bookId:bookId}).select({__v:0}) 

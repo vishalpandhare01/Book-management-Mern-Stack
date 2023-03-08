@@ -37,7 +37,7 @@ const navigate = useNavigate();
            <h1>Login</h1>
             <input type='email' placeholder="Email id" onChange={((e)=>setEmail(e.target.value))}/><br/>
             <input type='password' placeholder="Password" onChange={((e)=>setPassword(e.target.value))}/> <br/>    
-            <input  className="btn btn-primary" type="submit" placeholder="SUBMIT" /><br/>
+            <input  className="btn btn-primary" type="submit"  /><br/>
          </form>
         </div>
     </div>

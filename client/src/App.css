@@ -49,7 +49,7 @@
 .books{
   width: 400px;
   margin: auto;
-  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 form{

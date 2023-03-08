@@ -5,7 +5,6 @@ const multer = require("multer")
 const app = express()
 const cors = require("cors")
 
-
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(multer().any())

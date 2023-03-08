@@ -13,6 +13,12 @@ function Nav(){
     // Clear localStorage items 
     localStorage.clear();
     navigate('/')
+
+
+
+
+
+    
   }
 
     return(
